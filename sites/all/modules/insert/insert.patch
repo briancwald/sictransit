@@ -1,0 +1,53 @@
+diff --git a/insert.module b/insert.module
+index 5b4a578..871562f 100644
+--- a/insert.module
++++ b/insert.module
+@@ -272,7 +272,20 @@ function insert_field_widget_info_alter(&$info) {
+ }
+ 
+ /**
+- * Configuration form for editing insert settings for a field instance.
++ * Implements hook_variable_info().
++ */
++function insert_variable_info() {
++  $variable['insert_absolute_paths'] = array(
++    'title' => t('Insert absolute paths'),
++    'description' => t('Set this variable to FALSE if you want insert to use relative path when creating file URL for the public and private file stream wrappers.'),
++    'type' => 'boolean',
++    'default' => TRUE,
++  );
++
++  return $variable;
++}
++
++/** * Configuration form for editing insert settings for a field instance.
+  */
+ function insert_field_widget_settings_form($field, $instance) {
+   $widget = $instance['widget'];
+@@ -369,6 +382,8 @@ function theme_insert_field_widget_settings_styles($variables) {
+  * setting.
+  */
+ function insert_create_url($uri) {
++  global $base_url;
++
+   // This variable has no configuration location. It may be set by placing
+   // $conf['insert_absolute_paths'] = FALSE;
+   // in the site settings.php file, or by manually running variable_set().
+@@ -376,8 +391,15 @@ function insert_create_url($uri) {
+   // see http://drupal.org/node/640352.
+   $absolute = variable_get('insert_absolute_paths', TRUE);
+ 
+-  // TODO: Rewrite this function to support relative paths? Tricky because
+-  // not all stream wrappers support local paths at all.
++  $scheme = file_uri_scheme($uri);
++  if (!$absolute && ($scheme == 'public' || $scheme == 'private')) {
++    $base = $base_url . '/';
++    $matches = array();
++    if (preg_match('/^[\w\d]+:\/\/.*?\//', $base, $matches)) {
++      $base = drupal_substr($matches[0], 0, -1);
++      return str_replace($base, '', file_create_url($uri));
++    }
++  }
+   return file_create_url($uri);
+ }
+ 
