@@ -60,6 +60,9 @@ function theme_colorbox_image_formatter($variables) {
     case 'node_title':
       $caption = $node->title;
       break;
+    case 'custom':
+      $caption = token_replace($settings['colorbox_caption_custom'], array('node' => $node));
+      break;
     default:
       $caption = '';
   }
@@ -142,22 +145,31 @@ function theme_colorbox_imagefield($variables) {
 }
 
 /**
-* Preprocess variables for the colorbox-insert-image.tpl.php file.
-*/
+ * Preprocess variables for the colorbox-insert-image.tpl.php file.
+ */
 function template_preprocess_colorbox_insert_image(&$variables) {
- 
+  $class = array();
   $file = file_load($variables['item']['fid']);
 
-  $variables['image_path'] = colorbox_relative_url(image_style_url($variables['item']['style_name'], $file->uri));
+  if (!empty($variables['widget']['settings']['insert_class'])) {
+    $class = explode(' ', $variables['widget']['settings']['insert_class']);
+  }
+  $class[] = 'image-' . $variables['item']['style_name'];
+
+  foreach ($class as $key => $value) {
+    $class[$key] = drupal_html_class($value);
+  }
+
+  $variables['image_path'] = image_style_url($variables['item']['style_name'], $file->uri);
 
   if ($style_name = variable_get('colorbox_image_style', '')) {
-    $variables['link_path'] = colorbox_relative_url(image_style_url($style_name, $file->uri));
+    $variables['link_path'] = image_style_url($style_name, $file->uri);
   }
   else {
-    $variables['link_path'] = colorbox_relative_url(file_create_url($file->uri));
+    $variables['link_path'] = file_create_url($file->uri);
   }
 
-  $variables['class'] = $variables['widget']['settings']['insert_class'];
+  $variables['class'] = implode(' ', $class);
 
   $variables['gallery_id'] = '';
   switch (variable_get('colorbox_insert_gallery', 0)) {
@@ -169,18 +181,5 @@ function template_preprocess_colorbox_insert_image(&$variables) {
     case 3:
       $variables['gallery_id'] = '';
       break;
-  }
-}
-
-/*
-* Inspiried by insert_create_url(). Cuts off base url if variable is set and makes links relative.
-*/
-function colorbox_relative_url($url) {
-  // use insert.module's variable
-  $absolute = variable_get('insert_absolute_paths', TRUE);
-  if ($absolute) {
-    return $url;
-  } else {
-    return str_replace($GLOBALS['base_url'], '', $url);
   }
 }
