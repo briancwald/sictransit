@@ -1,0 +1,20 @@
+name = sic
+description = Framework is a blank canvas for theme developers. Use Framework as a starting point to facilitate your theme development.
+core = 7.x
+engine = phptemplate
+stylesheets[all][] = css/style.css.less
+stylesheets[all][] = css/960_12_col.css
+stylesheets[all][] = css/formalize.css
+
+scripts[] = js/curvycorners.js
+scripts[] = js/custom.js
+scripts[] = js/jquery.formalize.min.js
+
+regions[header]         = Header
+regions[navigation]     = Navigation
+regions[highlighted]    = Highlighted
+regions[help]           = Help
+regions[content]        = Content
+regions[sidebar_first]  = First Sidebar
+regions[sidebar_second] = Second Sidebar
+regions[footer]         = Footer
