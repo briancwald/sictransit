@@ -8,11 +8,7 @@
   </div>
 
   <header id="header" role="banner" class="grid_12 clearfix">
-	<?php if ($logo): ?>
-      <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" id="logo">
-        <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
-      </a>
-    <?php endif; ?>
+
     <?php if ($site_name || $site_slogan): ?>
       <hgroup id="site-name-slogan">
         <?php if ($site_name): ?>
@@ -30,7 +26,11 @@
        
     <?php print render($page['header']); ?>
      
-     <div id="est"><p>ESTB. 2009</p> </div>
+     <div id="est"> 	<?php if ($logo): ?>
+      <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" id="logo">
+        <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
+      </a>
+    <?php endif; ?>      </a><p>ESTB. 2009</p> </div>
      
      <div class="top-break"></div>
    
@@ -80,8 +80,7 @@
     <?php print render($page['help']); ?>
     <?php if ($action_links): ?><ul class="action-links"><?php print render($action_links); ?></ul><?php endif; ?>
     <?php print render($page['content']); ?>
-    <?php if (!empty($tabs['#primary'])): ?><div class="tabs-wrapper clearfix"><?php print render($tabs); ?></div><?php endif; ?>
-  </section> <!-- /#main -->
+     </section> <!-- /#main -->
   
   <?php if ($page['sidebar_first']): ?>
     <aside id="sidebar-first" role="complementary" class="sidebar clearfix">
@@ -99,5 +98,6 @@
     <?php print render($page['footer']) ?>
     <?php print $feed_icons ?>
   </footer> <!-- /#footer -->
+ <?php if (!empty($tabs['#primary'])): ?><div class="tabs-wrapper clearfix"><?php print render($tabs); ?></div><?php endif; ?>
 
 </div> <!-- /#container -->

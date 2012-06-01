@@ -68,15 +68,21 @@ h1,
 .h1 {
   font-size: 2em;
   line-height: 1.5;
+  color: #0B486B;
 }
 h1 a,
 .h1 a {
-  color: #1C3664;
+  color: #0B486B;
+}
+h1 a:hover,
+.h1 a:hover {
+  color: #3B8686;
 }
 h2,
 .h2 {
   font-size: 1.5em;
   line-height: 1;
+  color: #0B486B;
 }
 h3,
 .h3 {
@@ -96,20 +102,42 @@ h6,
 p {
   font-size: 1em;
   line-height: 1.5;
-  margin: 0 0 1.5em 0;
+  margin: 0 0 1em 0;
   color: #1C3664;
+}
+.quote {
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  float: left;
+  width: 290px;
+  background: url('../images/nav-bottom.png') bottom left repeat-x;
+}
+.quote h2 {
+  line-height: 1.3em;
+  text-align: justify;
+}
+.quote span {
+  font-size: .7em;
+}
+.home-body {
+  margin-left: 10px;
+  float: left;
 }
 a {
-  color: #069;
+  color: #3B8686;
   text-decoration: none;
 }
+.no-space {
+  margin: 0px;
+  padding: 0px;
+}
 a:visited {
-  color: #1C3664;
+  color: #3B8686;
 }
 a:hover,
 a:active,
 li a.active {
-  color: #39f;
+  color: #A8DBA8;
 }
 a:focus {
   outline: thin dotted;
@@ -117,6 +145,9 @@ a:focus {
 a:hover,
 a:active {
   outline: 0;
+}
+strong {
+  font-weight: bold;
 }
 /* apply common styling after reset.css */
 li ul,
@@ -191,15 +222,25 @@ th {
 #header {
   position: relative;
 }
-#header #logo {
+#logo {
+  margin-left: 50px;
+  position: relative;
+  width: 40px;
+  margin-top: 3px;
   float: left;
 }
 #header #site-name-slogan {
   float: left;
 }
 #header #site-name {
-  font-size: 2.0em;
+  font-size: 2em;
   padding-top: 20px;
+}
+#header #site-name a {
+  color: #0b486b;
+}
+#header #site-name a:visited {
+  color: #0b486b;
 }
 #header #site-name a:hover {
   text-decoration: none;
@@ -232,7 +273,7 @@ th {
   margin: 10px 10px;
 }
 #navigation ul#nice-menu-1 li a {
-  font-size: .9em;
+  font-size: 1em;
   position: relative;
   color: #1C3664;
   height: 50px;
@@ -253,19 +294,36 @@ th {
   padding: 0 2em 0 0;
 }
 .slidetext {
+  z-index: 2;
+  position: absolute;
   margin-top: -65px;
-  padding-left: 50px;
+  padding-left: 10px;
+  background: url '/sites/all/themes/sic/images/transparent.png';
+  padding: 3px;
+}
+.slidetext .slidetitle h2 {
+  color: #CFF09E;
+  padding-top: 5px;
+}
+.slidetext .slide-description p {
+  margin: 0px;
+  color: #FFF;
+  font-size: .8em;
+  margin-top: 5px;
 }
 #est {
-  background: url '/sites/all/themes/sic/images/estb.png' no-repeat;
-  height: 40px;
+  background: url '/sites/all/themes/sic/images/estb.png' bottom center no-repeat;
+  height: 70px;
   margin: 0px auto;
   width: 140px;
 }
 #est p {
   text-align: center;
-  padding-top: 5px;
   margin: 0px;
+  padding: 0px;
+  font-size: .7em;
+  width: 140px;
+  float: left;
 }
 .front #page-title {
   display: none;
@@ -281,12 +339,80 @@ h1#site-name {
   float: left;
   margin-right: 20px;
 }
+.jcarousel-skin-default .jcarousel-container-horizontal {
+  width: 620px;
+  padding: 0px;
+  height: 300px;
+  margin: 0px;
+  border: none;
+}
+.jcarousel-skin-default .jcarousel-container-horizontal .views-field-body {
+  font-size: .9em;
+  text-align: justify;
+}
+.jcarousel-skin-default .jcarousel-container-horizontal .views-field-view-node {
+  font-size: .9em;
+}
+.jcarousel-view--feeds--block li {
+  width: 250px;
+}
+.jcarousel-skin-default {
+  text-align: left;
+}
+.jcarousel-skin-default .jcarousel-clip-horizontal {
+  width: 590px;
+  margin-left: 15px;
+}
+.jcarousel-skin-default .jcarousel-prev-horizontal {
+  position: absolute;
+  top: 0px;
+  left: -4px;
+  background-position: -16px 0px;
+  border: 1px solid #ccc;
+}
+.jcarousel-skin-default .jcarousel-prev-horizontal:hover {
+  background-position: -48px 0;
+}
+.jcarousel-skin-default .jcarousel-next-horizontal {
+  position: absolute;
+  top: 0px;
+  right: -3px;
+  background-position: -5px -190px;
+  border: 1px solid #ccc;
+}
+.jcarousel-skin-default .jcarousel-next-horizontal:hover {
+  background-position: -37px -190px;
+}
+.jcarousel-skin-default .jcarousel-next,
+.jcarousel-skin-default .jcarousel-prev {
+  display: block;
+  width: 20px;
+  height: 198px;
+  background-image: url(/sites/all/themes/sic/images/sprite-2.png);
+}
+.jcarousel-skin-default .jcarousel-item-horizontal {
+  height: 100%;
+  border: none;
+  margin-right: 5px;
+}
 #block-block-1 {
   margin: 0px;
   padding-top: 20px;
 }
 #block-block-1 p {
   margin: 0px;
+}
+.tout-1 {
+  margin-bottom: 10px;
+}
+.tout-1 h1 {
+  border-bottom: 1px dashed #0B486B;
+  line-height: 1.3em;
+}
+.region-footer .block {
+  background: url '/sites/all/themes/sic/images/bottomline.png' top center no-repeat;
+  padding-top: 15px;
+  font-size: .9em;
 }
 .breadcrumb {
   clear: both;
