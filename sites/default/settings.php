@@ -207,7 +207,7 @@ $databases = array (
     array (
       'database' => 'sic',
       'username' => 'root',
-      'password' => 'root',
+      'password' => 'changeme1',
       'host' => 'localhost',
       'port' => '',
       'driver' => 'mysql',

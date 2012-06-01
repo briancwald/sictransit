@@ -23,11 +23,17 @@
         <?php if ($site_slogan): ?>
           <h2 id="site-slogan"><?php print $site_slogan; ?></h2>
         <?php endif; ?>
+        
+
       </hgroup>
     <?php endif; ?>
-
+       
     <?php print render($page['header']); ?>
-
+     
+     <div id="est"><p>ESTB. 2009</p> </div>
+     
+     <div class="top-break"></div>
+   
     <?php if ($main_menu || $secondary_menu || !empty($page['navigation'])): ?>
       <nav id="navigation" role="navigation" class="clearfix">
         <?php if (!empty($page['navigation'])): ?> <!--if block in navigation region, override $main_menu and $secondary_menu-->
